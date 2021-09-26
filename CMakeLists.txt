@@ -33,6 +33,12 @@ CPMAddPackage(
   OPTIONS "FMT_INSTALL YES" # create an installable target
 )
 
+CPMAddPackage(
+  GIT_TAG release-1.11.0
+  NAME gtest
+  GITHUB_REPOSITORY  google/googletest 
+)
+
 # ---- Add source files ----
 
 # Note: globbing sources is considered bad practice as CMake's generators may not detect new files

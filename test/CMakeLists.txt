@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
-project(GreeterTests LANGUAGES CXX)
+project(LeetTests LANGUAGES CXX)
 
 # ---- Options ----
 
@@ -27,9 +27,10 @@ endif()
 # ---- Create binary ----
 
 file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
-add_executable(GreeterTests ${sources})
-target_link_libraries(GreeterTests doctest::doctest Greeter::Greeter)
-set_target_properties(GreeterTests PROPERTIES CXX_STANDARD 17)
+add_executable(LeetTests ${sources})
+target_include_directories(LeetTests PUBLIC ../include)
+target_link_libraries(LeetTests GTest::gtest GTest::gtest_main)
+set_target_properties(LeetTests PROPERTIES CXX_STANDARD 17)
 
 # enable compiler warnings
 if(NOT TEST_INSTALLED_VERSION)
@@ -48,8 +49,8 @@ enable_testing()
 # Note: doctest and similar testing frameworks can automatically configure CMake tests. For other
 # testing frameworks add the tests target instead: add_test(NAME greeterTests COMMAND GreeterTests)
 
-include(${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake)
-doctest_discover_tests(GreeterTests)
+include(GoogleTest)
+gtest_discover_tests(LeetTests)
 
 # ---- code coverage ----
 
