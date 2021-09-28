@@ -36,18 +36,13 @@ TEST(TestAddTwoNumbers, Test1) {
   std::vector<int> input1 = {2, 4, 3};
   std::vector<int> input2 = {5, 6, 4};
   std::vector<int> expected_output = {7, 0, 8};
-  ListNode** track_list = nullptr;
   ListNode* list1 = CreateListFromVector(input1);
   ListNode* list2 = CreateListFromVector(input2);
 
   AddTwoNumbers add_nums;
-  auto output_list = add_nums.addTwoNumbers(list1, list2);
-  track_list = &output_list;
+  ListNode* output_list = add_nums.addTwoNumbers(list1, list2);
+  ListNode** track_list = &output_list;
   auto output_vector = ConvertToVector(output_list);
-  EXPECT_EQ((*track_list)->val, 7);
-  track_list = &(*track_list)->next;
-  EXPECT_EQ((*track_list)->val, 0);
-
 //   EXPECT_EQ(output_vector.size(), input1.size());
 
 //   EXPECT_EQ(output_vector[0], 7);
